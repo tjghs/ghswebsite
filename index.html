@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="icons/favicon.ico" rel="icon" type="image/ico">
+    <link href="css/main.css" rel="stylesheet"/>
+    <title>German Honor Society Tracker</title>
+</head>
+<body>
+	<div id="login-dialog">
+		<h1 id="login-message">Please login to continue</h1>
+		<form id="login-form">
+			<div class="group">      
+			  <input type="text" id="uname" required>
+			  <span class="bar"></span>
+			  <label>Username</label>
+			</div>
+			<div class="group">      
+			  <input type="password" id="pass" required>
+			  <span class="bar"></span>
+			  <label>Password</label>
+			</div>
+		</form>
+		<button class="basic-button" style="margin-left:calc(50% - 75px)" onclick="loginUser()">Login</button>
+	</div>
+	<div id="sidebar-wrapper">
+		<div id="sidebar"></div>
+	</div>
+    <div id="wrapper">
+		<div id="menu-bar"></div>
+		<div id="content-wrapper">
+            <div id="content"></div>
+        </div>
+    </div>
+</body>
+<script src="scripts/modules.js"></script>
+<script src="scripts/script.js"></script>
+
+</html>
