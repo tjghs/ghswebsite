@@ -54,7 +54,7 @@ tr:hover {
 }
 #login-form {
 	width: calc(100% - 15px);
-	height: calc(100% - 125px);
+	height: calc(100% - 150px);
 	float: left;
 	margin-top: 30px;
 	padding-left: 12.5%;/*calc((100% - 300px)/2);	*/
@@ -150,7 +150,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
     width: 100%;
     min-height: 100%;
     display: block;
-    background-color: #424242;
+    background-color: #757575;
 }
 a {
     -webkit-transition: all .2s ease;
@@ -177,17 +177,13 @@ button {
     float:left;
 	width: 150px;
 	height: 50px;
-	-webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	border-radius: 5px;
 }
 .basic-button:hover {
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background-color: #616161;
 }
 .basic-button:active {
-    background-color: #616161;
+    background-color: #757575;
 }
 #menu-bar {
 	height: 48px;
@@ -280,15 +276,16 @@ button {
 	max-height: 500px;
 	height: 50%;
 	width: 70%;
-	display: none;
+	border-radius: 5px;
+    display: none;
 	padding-top: 35px;
 	text-align: center;
 	background-color: #424242;
 	z-index: 10000;
 	position: absolute;
-	-webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 #mini-card-wrapper {
 	margin-top: 2px;
