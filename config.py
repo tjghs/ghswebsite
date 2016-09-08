@@ -7,7 +7,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'studmuffin'
-
+    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/ghstracker'
 
 class ProductionConfig(Config):
     DEBUG = False
