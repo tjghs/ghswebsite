@@ -1,0 +1,90 @@
+* {
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    border: 0;
+    -webkit-transition: all 0.2s ease;
+  	-moz-transition: all 0.2s ease;
+  	-ms-transition: all 0.2s ease;
+  	-o-transition: all 0.2s ease;
+   	transition: all 0.2s ease;
+}
+dialog {
+    width: 200px;
+    left: calc(50vw - 100px);
+}
+table {
+    min-width: 200px;
+    margin-left: 24px;
+    border-spacing: 0;
+}
+td {
+    border: 1px solid #e0e0e0;
+    padding: 5px;
+}
+button {
+    outline: none;
+}
+#wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    float: left;
+}
+header {
+    position: fixed;
+    width: 100vw;
+    height: 48px;
+    float: left;
+    background-color: #000;
+}
+#content {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 48px);
+    top: 48px;
+    left: 0;
+    float: left;
+    background-color: #eee;
+}
+#sidebar {
+    min-width: 200px;
+    height: calc(100vh - 48px);
+    left: -200px;
+    top: 48px;
+    float: left;
+    position: fixed;
+    z-index: 2;
+    background-color: #bdbdbd;
+}
+.menu-button {
+    font-size: 14px;
+    width: 100%;
+    height: 100px;
+    float: left;
+    padding: 0;
+	text-align: center;
+	color: #fff;
+    background-color: transparent;
+}
+#nav-button {
+    width: 48px;
+    height: 48px;
+    float: left;
+    outline: none;
+    background-color: transparent;
+}
+.ic-menu {
+    background-image: url("../icons/ic_menu_white_48px.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: inline-block;
+}
+.ic-menu:hover {
+    transform: rotate(-180deg);
+}
