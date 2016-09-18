@@ -90,6 +90,3 @@ header {
     cursor: pointer;
     display: inline-block;
 }
-.ic-menu:hover {
-    transform: rotate(-180deg);
-}
