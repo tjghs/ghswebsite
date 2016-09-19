@@ -22,13 +22,3 @@ class Hours(db.Model):
 
     def __repr__(self):
         return "<id{}>".format(self.id)
-
-'''
-class Session(db.Model):
-    __tablename__ = "session"
-
-    token = db.Column("token", primary_key=True)
-
-
-    def __init__(token):
-        self.token = token'''
