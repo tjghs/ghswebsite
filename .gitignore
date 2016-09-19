@@ -12,3 +12,4 @@ _mailinglist
 .cache/
 .idea/
 __pycache__/
+migrations/versions/

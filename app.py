@@ -29,7 +29,8 @@ authorization_url, state = oauth.authorization_url(
 
 @app.route("/")
 def index():
-    
+    if "oauth_token" in session:
+        return render_template("main.html")
     session["oauth_state"] = state
     return redirect(authorization_url)
 
@@ -47,7 +48,7 @@ def login():
         token = oauth.refresh_token(
             "https://ion.tjhsst.edu/oauth/token/", **args)
     session["oauth_token"] = token
-    return render_template("main.html")
+    return redirect(url_for('index'))
 
 
 @app.route("/css/<path:path>")
