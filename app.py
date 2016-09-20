@@ -11,44 +11,46 @@ AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
 TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
 
 from requests_oauthlib import OAuth2Session
+from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 import models
+import json
 
 # print(os.environ['APP_SETTINGS'])
-
-
-oauth = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI, scope=["read"])
-
-authorization_url, state = oauth.authorization_url(
-    AUTH_BASE_URL)
 
 
 @app.route("/")
 def index():
     if "oauth_token" in session:
-        return render_template("main.html")
-    session["oauth_state"] = state
-    return redirect(authorization_url)
+        profile_json = session.get('profile', {})
+        return render_template("main.html", profile=profile_json)
+
+    return redirect(url_for('login'))
 
 
 @app.route("/login", methods=["GET"])
 def login():
-    token = oauth.fetch_token(
-        TOKEN_URL,
-        code=request.args.get("code"),
-        client_secret=CLIENT_SECRET)
+    oauth = OAuth2Session(
+        CLIENT_ID, redirect_uri=REDIRECT_URI, scope=["read"])
+    if 'code' not in request.args:
+        authorization_url, state = oauth.authorization_url(AUTH_BASE_URL)
+        return redirect(authorization_url)
     try:
+        token = oauth.fetch_token(
+            TOKEN_URL, code=request.args.get(
+                "code", ""), client_secret=CLIENT_SECRET)
         profile = oauth.get("https://ion.tjhsst.edu/api/profile")
-    except TokenExpiredError as e:
-        args = {"client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}
-        token = oauth.refresh_token(
-            "https://ion.tjhsst.edu/oauth/token/", **args)
-    session["oauth_token"] = token
-    return redirect(url_for('index'))
+        profile_data = json.loads(profile.content.decode())
+        session["profile"] = profile_data
+        session["username"] = profile_data["ion_username"]
+        session["oauth_token"] = token
+        return redirect(url_for('index'))
+    except InvalidGrantError:
+        return redirect(url_for('login'))
 
 
 @app.route("/css/<path:path>")
@@ -69,6 +71,12 @@ def send_icons(path):
 @app.route("/fonts/<path:path>")
 def send_fonts(path):
     return send_from_directory('static/fonts', path)
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
