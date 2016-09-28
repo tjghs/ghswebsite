@@ -19,15 +19,6 @@ dialog {
     width: 200px;
     left: calc(50vw - 100px);
 }
-table {
-    min-width: 200px;
-    margin-left: 24px;
-    border-spacing: 0;
-}
-td {
-    border: 1px solid #e0e0e0;
-    padding: 5px;
-}
 button {
     font-family: Roboto, Helvetica Neue, Helvetica, sans-serif;
     outline: none;
