@@ -25,12 +25,15 @@ import json
 
 @app.route("/")
 def index():
+    return render_template("index.html")
+
+@app.route("/hours")
+def hours():
     if "oauth_token" in session:
         profile_json = session.get('profile', {})
         return render_template("main.html", profile=profile_json)
 
     return redirect(url_for('login'))
-
 
 @app.route("/login", methods=["GET"])
 def login():
@@ -48,7 +51,7 @@ def login():
         session["profile"] = profile_data
         session["username"] = profile_data["ion_username"]
         session["oauth_token"] = token
-        return redirect(url_for('index'))
+        return redirect(url_for('hours'))
     except InvalidGrantError:
         return redirect(url_for('login'))
 

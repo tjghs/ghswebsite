@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/module.css">
 	</head>
-	<title>German Honor Society Tracker</title>
+	<title>German Honor Society</title>
 	<body>
         <nav id="sidebar">
             <a href="{{ url_for('index') }}">
@@ -17,9 +17,6 @@
             </a>
             <a href="{{ url_for('hours') }}">
                 <button class="menu-button">Hour Tracker</button>
-            </a>
-            <a href="{{ url_for('logout') }}">
-                <button id="logout-button" class="menu-button">Log Out</button>
             </a>
         </nav>
         <header>
@@ -29,16 +26,8 @@
         </header>
 		<div id="wrapper">
 			<div id="content">
-	            <div class="card" id="status">
+	            <div class="card">
                     
-                    <table>
-		            {% for info in profile %}
-                        <tr>
-                            <td>{{ info }}</td>
-                            <td>{{ info }}</td>
-                        </tr>
-                    {% endfor %}
-                    </table>
                 </div>
             </div>
 		</div>
