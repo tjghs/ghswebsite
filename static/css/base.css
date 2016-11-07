@@ -45,19 +45,22 @@ button {
     font-family: Roboto, Helvetica Neue, Helvetica, sans-serif;
     outline: none;
 }
-#wrapper {
+
+section {
     position: relative;
-    z-index: 0;
+    display: inline-block;
+}
+
+#wrapper {
     width: 100%;
-    min-height: 100vh;
     height: 100%;
-    overflow-y: hidden;
     background: #eee;
+    float: left;
 }
 header {
     z-index: 2;
     position: fixed;
-    width: 100vw;
+    width: 100%;
     height: 68px;
     float: left;
     background-color: #fff;
@@ -70,11 +73,9 @@ header {
 }
 
 #content {
+    z-index: 0;
     position: relative;
-    z-index: 1;
-    width: 100vw;
-    max-height: calc(100% - 73px);
-    height: 100%;
+    width: 100%;
     top: 71px;
     left: 0;
     float: left;
@@ -116,7 +117,6 @@ header {
 
 #welcome-image {
     width: calc(50% - 5px);
-    height: 50%;
     float: left;
 }
 
@@ -131,6 +131,8 @@ header {
         width: 100%;
         padding-right: 0px;
         clear: both;
+    }
+    #content {
     }
 }
 
