@@ -15,6 +15,24 @@
   	-o-transition: all 0.2s ease;
    	transition: all 0.2s ease;
 }
+
+hr {
+    width: 100%;
+    height: 1px;
+    float: left;
+    border: none;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+
+}
+
+h1 {
+    font-family: Roboto, Helvetica Neue, Helvetica, sans-serif;
+}
+
+p {
+    font-family: Roboto, Helvetica Neue, Helvetica, sans-serif;
+}
+
 dialog {
     width: 200px;
     left: calc(50vw - 100px);
@@ -28,35 +46,88 @@ button {
     height: 100vh;
     overflow: hidden;
     float: left;
+    background-color: #eee;
 }
 header {
     position: fixed;
     width: 100vw;
-    height: 48px;
+    height: 68px;
     float: left;
-    background-color: #000;
+    background-color: #fff;
+    border-bottom: 3px solid #DA0A16;
 }
+#logo-wrapper {
+    width: calc(100% - 48px);
+    height: 100%;
+    float: left;
+}
+
 #content {
     position: relative;
     width: 100vw;
-    height: calc(100vh - 48px);
-    top: 48px;
+    height: calc(100vh - 71px);
+    top: 71px;
     left: 0;
     float: left;
-    background-color: #eee;
+    background-color: #fff;
 }
-#sidebar {
-    min-width: 200px;
-    height: calc(100vh - 48px);
-    left: -200px;
-    top: 48px;
+
+@media (min-width: 900px) {
+    #content {
+        width: 800px;
+        left: calc((100vw - 800px) / 2);
+    }
+    #logo-wrapper {
+        width: calc(100% - 48px - ((100vw - 800px) / 2));
+    }
+}
+
+.content-section {
+    width: 100%;
     float: left;
+}
+
+#welcome, #photos {
+    margin: 30px;
+    width: calc(100% - 60px);
+    float: left;
+}
+
+/*#welcome > p {
+    margin: 10px 10px 10px 0px;
+    width: calc(50% - 20px);
+    float: left;
+}*/
+
+#welcome-text {
+    width: calc(50% - 5px);
+    float: left;
+    padding-right: 10px;
+}
+
+#welcome-image {
+    width: calc(50% - 5px);
+    height: 50%;
+    float: left;
+}
+
+#welcome-image > img {
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar {
+    width: 200px;
+    height: calc(100vh - 71px);
+    right: -200px;
+    top: 71px;
+    float: right;
     position: fixed;
     z-index: 2;
-    background-color: #e0e0e0;
+    background-color: #eee;
 }
 .menu-button {
-    font-size: 14px;
+    font-size: 16px;
     width: 100%;
     height: 100px;
     float: left;
@@ -75,11 +146,15 @@ header {
     background-color: transparent;
 }
 .ic-menu {
-    background-image: url("../icons/ic_menu_white_48px.svg");
+    background-image: url("../icons/ic_menu_black_48px.svg");
     background-repeat: no-repeat;
     background-size: 100%;
     width: 100%;
     height: 100%;
     cursor: pointer;
     display: inline-block;
+}
+
+footer {
+    width: 100vw;
 }

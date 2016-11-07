@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 CLIENT_ID = "omNihUKDY7L8XXLh41WTTY9Pda21T2SRqAmJO86C"
 CLIENT_SECRET = "fmdfCpUwDIu0E5FExHudOdySDSa7HPhNrRKTirNsXJIWc2NEMFJtiY7UaczcTJL2kzRnsBV4OWPQ8P8KTv8YDqS5rdOOAE0opdYBLbZtMzNTfnCWHTJTgmpmDDtSbjDY"
@@ -69,6 +69,11 @@ def send_js(path):
 @app.route("/icons/<path:path>")
 def send_icons(path):
     return send_from_directory('static/icons', path)
+
+
+@app.route("/images/<path:path>")
+def send_images(path):
+    return send_from_directory('static/images', path)
 
 
 @app.route("/fonts/<path:path>")
