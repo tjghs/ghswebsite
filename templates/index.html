@@ -11,17 +11,17 @@
 	</head>
 	<title>German Honor Society</title>
 	<body>
-        <header>
-            <div id="logo-wrapper">
-                <a href="{{ url_for('index') }}">
-                    <div id="logo"></div>
-                </a>
-            </div>
-            <button id="nav-button">
-                <i class="ic-menu"></i>
-            </button>
-        </header>
 		<div id="wrapper">
+            <header>
+                <div id="logo-wrapper">
+                    <a href="{{ url_for('index') }}">
+                        <div id="logo"></div>
+                    </a>
+                </div>
+                <button id="nav-button">
+                    <i class="ic-menu"></i>
+                </button>
+            </header>
 			<div id="content">
                 <section class="content-section">
                     <div id="welcome">
@@ -39,6 +39,9 @@
                     <div id="photos">
                         <div id="photos-text">
                             <h1>Photos</h1>
+                            <div id="example-image">
+                                <img src="images/example.jpg" alt="Example Image" />
+                            </div>
                         </div>
                     </div>
                     <hr>

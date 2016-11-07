@@ -4,8 +4,9 @@ var mb = document.querySelector("#nav-button"),
 
 mb.addEventListener("click", function(){toggleSidebar(true)}, false);
 wr.addEventListener("click", function(){toggleSidebar(false)}, false);
-mb.addEventListener("touchstart", function(){toggleSidebar(true)}, false);
-wr.addEventListener("touchstart", function(){toggleSidebar(false)}, false);
+/*mb.addEventListener("touchend", function(){toggleSidebar(true)}, false);
+wr.addEventListener("touchend", function(){toggleSidebar(false)}, false);
+*/
 sb.style.disabled = true;
 
 function toggleSidebar(toggleOpenAllowed) {
