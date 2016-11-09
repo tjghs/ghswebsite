@@ -58,6 +58,8 @@ footer {
     height: 68px;
     border-top: 3px solid #DA0A16;
     float: left;
+    background-color: #fff;
+    z-index: 2;
 }
 
 #wrapper {
