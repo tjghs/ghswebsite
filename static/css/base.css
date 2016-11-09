@@ -51,11 +51,21 @@ section {
     display: inline-block;
 }
 
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 68px;
+    border-top: 3px solid #DA0A16;
+    float: left;
+}
+
 #wrapper {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     background: #eee;
     float: left;
+    margin-top: 71px;
 }
 header {
     z-index: 2;
@@ -76,7 +86,6 @@ header {
     z-index: 0;
     position: relative;
     width: 100%;
-    top: 71px;
     left: 0;
     float: left;
     background-color: #fff;
@@ -150,11 +159,11 @@ header {
     float: right;
     position: fixed;
     z-index: 2;
-    background-color: #e0e0e0;
+    background-color: #da0a16;
 }
 .menu-button {
-    color: #da0a16;
-    font-size: 18px;
+    color: #fff;
+    font-size: 16px;
     width: 100%;
     height: 100px;
     float: left;
@@ -182,6 +191,3 @@ header {
     display: inline-block;
 }
 
-footer {
-    width: 100vw;
-}
