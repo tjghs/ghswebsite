@@ -111,9 +111,19 @@ header {
     border-bottom: 3px solid #DA0A16;
 }
 #logo-wrapper {
-    width: calc(100% - 48px);
+    width: calc(100% - 68px);
     height: 100%;
     float: left;
+}
+
+#logo {
+    float: left;
+    width: 100%;
+    height: 48px;
+    background-image: url('../images/logo.svg');
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    margin-left: calc(50vw - 68px);
 }
 
 #content {
@@ -131,7 +141,7 @@ header {
         left: calc((100vw - 800px) / 2);
     }
     #logo-wrapper {
-        width: calc(100% - 48px - ((100vw - 800px) / 2));
+        width: calc(100% - 68px - ((100vw - 800px) / 2));
     }
 }
 
@@ -206,12 +216,17 @@ header {
 	text-align: center;
     background-color: transparent;
 }
+
+.menu-button:hover {
+    background-color: #bf0913; 
+}
+
 .menu-button:active {
-    background-color: #bdbdbd; 
+    background-color: #a40810; 
 }
 #nav-button {
-    width: 48px;
-    height: 48px;
+    width: 68px;
+    height: 68px;
     float: left;
     outline: none;
     background-color: transparent;
