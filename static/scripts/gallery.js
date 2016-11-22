@@ -1,31 +1,48 @@
 "use strict"
-var script = document.createElement("script"),
-    load = document.createElement("button"),
-    linkArr = [],
-    capArr = [],
-    imgMod = [],
-    imgNum = 0,
-    isZoom = false,
-    isLoad = false;
+var left = document.querySelector("#left-arrow"),
+    right = document.querySelector("#right-arrow"),
+    ss = document.querySelector("#slideshow");
 
-script.src = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=ae976304a535e7ed8ff2100c1d5b2dc7&photoset_id=72157659451270924&user_id=126785613%40N04&extras=original_format&format=json&api_key=9f46232676650675ddd2cc7bf3ca979d";
+
+var script = document.createElement("script"),
+    linkArr = [],
+    index = 0;
+
+script.src = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=cebede3e2c905c250355e3755eca032c&user_id=144387717%40N03&extras=url_c%2Curl_o&format=json";
 document.getElementById("wrapper").appendChild(script);
-load.id = "load-more";
-load.innerHTML = "Load More...";
-document.getElementById("content").appendChild(load);
 
 function jsonFlickrApi(data) {
-    var photos = data.photoset.photo;
+    var photos = data.photos.photo;
     for (var i = 0; i < photos.length; i++) {
-        linkArr.push(["https://farm" + photos[i].farm + ".staticflickr.com/" + photos[i].server + "/" + photos[i].id + "_" + photos[i].secret + "_z.jpg",
-            "https://farm" + photos[i].farm + ".staticflickr.com/" + photos[i].server + "/" + photos[i].id + "_" + photos[i].originalsecret + "_o." + photos[i].originalformat
-        ]);
-        capArr.push(photos[i].title);
+        linkArr.push([photos[i].url_c, photos[i].url_o]);
+        console.log(photos[i].url_c);
     }
-    load.onclick = function() { loadMore() };
 }
 
-function loadMore() {
+function getLeftImage() {
+    if(index > 0) {
+        index--;
+    }
+    console.log(index);
+    console.log(ss.lastElementChild.src);
+    ss.lastElementChild.src = linkArr[index][0];
+}
+
+function getRightImage() {
+    if(index < linkArr.length - 1) {
+        index++;
+    }
+    console.log(index);
+    console.log(ss.lastElementChild.src);
+    ss.lastElementChild.src = linkArr[index][0];
+}
+
+
+left.addEventListener("click", function(){getLeftImage()}, false);
+right.addEventListener("click", function(){getRightImage()}, false);
+left.addEventListener("touchleave", function(){getLeftImage()}, false);
+right.addEventListener("touchleave", function(){getRightImage()}, false);
+/*function loadMore() {
     var temp = imgNum,
     	loadNum = (2 * Math.floor((window.innerWidth - 296) / 325)) == 0 ? 2 : (2 * Math.floor((window.innerWidth - 296) / 325));
     if (temp + loadNum > linkArr.length) {
@@ -40,9 +57,9 @@ function loadMore() {
             imgNum++;
         }
     }
-}
+}*/
 
-function expandImage(url, cap) {
+/*function expandImage(url, cap) {
     var gallery = document.getElementById("gallery"),
         galleryWrap = document.getElementById("gallery-wrapper");
     gallery.innerHTML = "";
@@ -68,15 +85,16 @@ function expandImage(url, cap) {
             window.clearInterval(checkLoad);
         }
     }, 100);
-}
+}*/
 
-window.onload = function() {
+/*window.onload = function() {
 	var initNum = (Math.floor((window.innerWidth - 296) / 325)) == 0 ? 1 : (2 * Math.floor((window.innerWidth - 296) / 325));
     for (var i = imgNum; i < 4 * initNum; i++) {
         imgMod.push(new imgModule(linkArr[linkArr.length - i - 1], capArr[capArr.length - i - 1]));
         imgNum++;
     }
-}
+}*/
+/*
 gallery.ondblclick = function() {
     if(isLoad) {
         if(isZoom) {
@@ -86,10 +104,10 @@ gallery.ondblclick = function() {
             this.style.left = "0px";
         } else {
             gallery.style.cursor = "zoom-out";
-            this.style.transform = "scale(2)";
+            this.style.transform = "scale(2)";*/
             /*this.style.top = 2 * event.y + "px";
             this.style.left = 2 * event.x + "px";*/     
-        }
+        /*}
         isZoom = !isZoom;
     }
 }
@@ -115,4 +133,4 @@ function imgModule(url, cap) {
         bar.appendChild(label);
         imgCard.appendChild(mod);
         parent.insertBefore(imgCard, document.getElementById("load-more"));
-}
+}*/
