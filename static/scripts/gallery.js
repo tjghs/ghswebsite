@@ -8,7 +8,7 @@ var script = document.createElement("script"),
     linkArr = [],
     index = 0;
 
-script.src = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=cebede3e2c905c250355e3755eca032c&user_id=144387717%40N03&extras=url_c%2Curl_o&format=json";
+script.src = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=95bc9ba34511c5c6b3f35fb973f3cd92&user_id=144387717%40N03&extras=url_c%2Curl_o&format=json";
 document.getElementById("wrapper").appendChild(script);
 
 function jsonFlickrApi(data) {
