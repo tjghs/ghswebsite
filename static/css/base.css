@@ -56,7 +56,7 @@ button {
     float: left;
     border-radius: 50%;
     background-size: 100%;
-    background-color: #000;
+    background-color: #da0a16;
     background-repeat: no-repeat;
     top: calc(50% - 24px);
     -webkit-mask-repeat: no-repeat;
@@ -64,7 +64,10 @@ button {
 }
 
 #left-arrow:hover, #right-arrow:hover {
-    background-color: #fff;
+    background-color: #fff; 
+}
+
+#left-arrow:active, #right-arrow:active {
 }
 
 #left-arrow {
@@ -181,28 +184,22 @@ header {
 }
 
 #slideshow > img {
-    width: 100%;
+    max-width: 100%;
     max-height: 100%;
+    left: 50%;
+    top: 50%;    
     float: left;
-    position: relative;
-}
-
-@media (max-width: 600px) {
-    #welcome-text, #welcome-image {
-        width: 100%;
-        padding-right: 0px;
-        clear: both;
-    }
-    #content {
-    }
+    transform: translate(-50%, -50%);
+    position: absolute;
 }
 
 #slideshow {
     width: 100%;
-    max-height: 500px;
-    float: left;
+    height: 500px;
     position: relative;
+    background-color: #464646;
     overflow: hidden;
+    float: left;
 }
 
 #sidebar {
@@ -248,5 +245,18 @@ header {
     height: 100%;
     cursor: pointer;
     display: inline-block;
+}
+
+@media (max-width: 640px) {
+    #welcome-text, #welcome-image {
+        width: 100%;
+        padding-right: 0px;
+        clear: both;
+    }
+    #slideshow {
+        height: 300px;    
+    }
+    #content {
+    }
 }
 
