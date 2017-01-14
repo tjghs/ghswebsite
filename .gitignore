@@ -13,3 +13,4 @@ _mailinglist
 .idea/
 __pycache__/
 migrations/versions/
+config.py
