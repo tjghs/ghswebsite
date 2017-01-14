@@ -6,7 +6,7 @@ from urllib.parse import urlparse, urljoin, urlencode
 
 CLIENT_ID = "omNihUKDY7L8XXLh41WTTY9Pda21T2SRqAmJO86C"
 CLIENT_SECRET = "fmdfCpUwDIu0E5FExHudOdySDSa7HPhNrRKTirNsXJIWc2NEMFJtiY7UaczcTJL2kzRnsBV4OWPQ8P8KTv8YDqS5rdOOAE0opdYBLbZtMzNTfnCWHTJTgmpmDDtSbjDY"
-REDIRECT_URI = "/login"
+REDIRECT_URI = "https://activities.tjhsst.edu/ghs/login"
 
 AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
 TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
@@ -14,7 +14,7 @@ TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
 from requests_oauthlib import OAuth2Session
 from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
 app = Flask(__name__)
-#app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

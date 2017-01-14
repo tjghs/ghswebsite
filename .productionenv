@@ -1,0 +1,2 @@
+source ~/public/env/bin/activate
+export APP_SETTINGS="config.ProductionConfig"
