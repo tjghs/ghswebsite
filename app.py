@@ -23,11 +23,13 @@ import json
 
 # print(os.environ['APP_SETTINGS'])
 
+
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
     test_url = urlparse(urljoin(request.host_url, target))
     return test_url.scheme in ('http', 'https') and \
-           ref_url.netloc == test_url.netloc
+        ref_url.netloc == test_url.netloc
+
 
 def get_redirect_target():
     for target in request.values.get('next'), request.referrer:
@@ -36,39 +38,36 @@ def get_redirect_target():
         if is_safe_url(target):
             return target
 
+
 def redirect_back(endpoint, **values):
     target = request.form['next']
     if not target or not is_safe_url(target):
         target = url_for(endpoint, **values)
     return redirect(target)
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/hours")
 def hours():
     if "oauth_token" in session:
         profile_json = session.get('profile', {})
         return render_template("hours.html", profile=profile_json)
-    
-    #request.form['next'] = 'hours'
-    #return redirect(url_for('login', next='hours'))
-    #return login('hours')
+
     return redirect(url_for('login', next='hours'))
+
 
 @app.route("/admin")
 def admin():
-    #next = "admin"
     if "oauth_token" in session:
         profile_json = session.get('profile', {})
         return render_template("admin.html", profile=profile_json)
-    
+
     return redirect(url_for('login', next='admin'))
-    #request.form['next'] = 'admin'
-    #return redirect(url_for('login', next='admin'))
-    #return login(request.form['admin'])
-    #return redirect(url_for('login'), next='admin')
+
 
 @app.route("/login", methods=["GET"])
 def login():
