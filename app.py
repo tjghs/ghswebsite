@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os
+import sys, os
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from urllib.parse import urlparse, urljoin, urlencode
@@ -126,4 +126,7 @@ def logout():
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=sys.argv[1])
+    if(len(sys.argv) < 2):
+        print("Please specify a port")
+        exit()
+    app.run(host="0.0.0.0", port=int(sys.argv[1]))
