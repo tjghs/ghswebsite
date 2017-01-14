@@ -1,8 +1,10 @@
 # German Honor Society Website #
 
 ## Setting up environment ##
+* `pip install --user virtualenv`
+
 * Run in root directory of the project
-`virtualenv --no-site-packages --distribute -p /usr/bin/python3 env`
+`~/.local/bin/virtualenv --no-site-packages --distribute -p python3.5 env`
 
 * `source env/bin/activate`
 
