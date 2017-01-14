@@ -6,7 +6,7 @@ from urllib.parse import urlparse, urljoin, urlencode
 
 CLIENT_ID = "omNihUKDY7L8XXLh41WTTY9Pda21T2SRqAmJO86C"
 CLIENT_SECRET = "fmdfCpUwDIu0E5FExHudOdySDSa7HPhNrRKTirNsXJIWc2NEMFJtiY7UaczcTJL2kzRnsBV4OWPQ8P8KTv8YDqS5rdOOAE0opdYBLbZtMzNTfnCWHTJTgmpmDDtSbjDY"
-REDIRECT_URI = "https://dev.wzhang.me/login"
+REDIRECT_URI = "/login"
 
 AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
 TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
@@ -126,4 +126,4 @@ def logout():
     return redirect(url_for("index"))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=sys.argv[1])
