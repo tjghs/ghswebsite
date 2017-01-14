@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="description" content="">
-		<meta name="author" content="William Zhang">
-		<meta name=viewport content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/ico" href="icons/favicon.ico">
-		<link rel="stylesheet" href="css/base.css">
-		<link rel="stylesheet" href="css/module.css">
-	</head>
-	<title>German Honor Society Tracker</title>
-	<body>
+    <head>
+{% include 'head.html' %}
+    </head>
+    <title>German Honor Society Tracker</title>
+    <body>
         <header>
             <div id="logo-wrapper">
                 <a href="{{ url_for('index') }}">
@@ -21,11 +15,11 @@
                 <i class="ic-menu"></i>
             </button>
         </header>
-		<div id="wrapper">
-			<div id="content">
-	            <div class="card" id="status">
+        <div id="wrapper">
+            <div id="content">
+                <div class="card" id="status">
                     <table>
-		            {% for info in profile %}
+                    {% for info in profile %}
                         <tr>
                             <td>{{ info }}</td>
                             <td>{{ info }}</td>
@@ -34,14 +28,14 @@
                     </table>
                 </div>
             </div>
-		</div>
+        </div>
         <nav id="sidebar">
-            {% include 'sidebar.html' %}
+{% include 'sidebar.html' %}
             <a href="{{ url_for('logout') }}">
                 <button id="logout-button" class="menu-button">Log Out</button>
             </a>
         </nav>
         <script src="scripts/script.js"></script>
         <script src="scripts/sidebar.js"></script>
-	</body>
+    </body>
 </html>
