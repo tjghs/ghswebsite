@@ -2,6 +2,7 @@
 import os
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+from urllib.parse import urlparse, urljoin, urlencode
 
 CLIENT_ID = "omNihUKDY7L8XXLh41WTTY9Pda21T2SRqAmJO86C"
 CLIENT_SECRET = "fmdfCpUwDIu0E5FExHudOdySDSa7HPhNrRKTirNsXJIWc2NEMFJtiY7UaczcTJL2kzRnsBV4OWPQ8P8KTv8YDqS5rdOOAE0opdYBLbZtMzNTfnCWHTJTgmpmDDtSbjDY"
@@ -22,6 +23,24 @@ import json
 
 # print(os.environ['APP_SETTINGS'])
 
+def is_safe_url(target):
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url, target))
+    return test_url.scheme in ('http', 'https') and \
+           ref_url.netloc == test_url.netloc
+
+def get_redirect_target():
+    for target in request.values.get('next'), request.referrer:
+        if not target:
+            continue
+        if is_safe_url(target):
+            return target
+
+def redirect_back(endpoint, **values):
+    target = request.form['next']
+    if not target or not is_safe_url(target):
+        target = url_for(endpoint, **values)
+    return redirect(target)
 
 @app.route("/")
 def index():
@@ -31,16 +50,37 @@ def index():
 def hours():
     if "oauth_token" in session:
         profile_json = session.get('profile', {})
-        return render_template("main.html", profile=profile_json)
+        return render_template("hours.html", profile=profile_json)
+    
+    #request.form['next'] = 'hours'
+    #return redirect(url_for('login', next='hours'))
+    #return login('hours')
+    return redirect(url_for('login', next='hours'))
 
-    return redirect(url_for('login'))
+@app.route("/admin")
+def admin():
+    #next = "admin"
+    if "oauth_token" in session:
+        profile_json = session.get('profile', {})
+        return render_template("admin.html", profile=profile_json)
+    
+    return redirect(url_for('login', next='admin'))
+    #request.form['next'] = 'admin'
+    #return redirect(url_for('login', next='admin'))
+    #return login(request.form['admin'])
+    #return redirect(url_for('login'), next='admin')
 
 @app.route("/login", methods=["GET"])
 def login():
+    nexturl = request.args.get('next')
+    if not is_safe_url(nexturl):
+        return flask.abort(400)
+
     oauth = OAuth2Session(
         CLIENT_ID, redirect_uri=REDIRECT_URI, scope=["read"])
     if 'code' not in request.args:
         authorization_url, state = oauth.authorization_url(AUTH_BASE_URL)
+        session["next"] = nexturl
         return redirect(authorization_url)
     try:
         token = oauth.fetch_token(
@@ -51,7 +91,7 @@ def login():
         session["profile"] = profile_data
         session["username"] = profile_data["ion_username"]
         session["oauth_token"] = token
-        return redirect(url_for('hours'))
+        return redirect(url_for(session["next"]))
     except InvalidGrantError:
         return redirect(url_for('login'))
 
