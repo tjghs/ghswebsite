@@ -14,7 +14,7 @@ TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
 from requests_oauthlib import OAuth2Session
 from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
+#app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
