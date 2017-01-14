@@ -14,3 +14,4 @@ _mailinglist
 __pycache__/
 migrations/versions/
 config.py
+env/
