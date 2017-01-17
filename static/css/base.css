@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Cardo:400,400i,700|Source+Sans+Pro:700,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600|Vollkorn');
 
 @font-face {
     font-family: Roboto;
@@ -6,7 +6,7 @@
  }
 
 * {
-    font-family: Cardo, Garamond, Serif;
+    font-family: Vollkorn, Serif;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -34,12 +34,12 @@ hr {
 }
 
 h1 {
-    font-family: "Source Sans Pro", Helvetica Neue, Helvetica, sans-serif;
-    font-size: 3em;
+    font-family: "Open Sans", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 2em;
 }
 
 p {
-    font-family: Cardo, Garamond, Serif;
+    font-family: "Vollkorn", Serif;
     font-size: 1em;
 }
 
@@ -48,7 +48,7 @@ dialog {
     left: calc(50vw - 100px);
 }
 button {
-    font-family: Roboto, Helvetica Neue, Helvetica, sans-serif;
+    font-family: "Open Sans", Roboto, "Helvetica Neue", Helvetica, sans-serif;
     outline: none;
     cursor: pointer;
 }
