@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Cardo:400,400i,700|Source+Sans+Pro:700,900');
+
 @font-face {
     font-family: Roboto;
     src: url('../fonts/roboto/Roboto-Regular.ttf')
  }
 
 * {
-    font-family Roboto, Helvetica Neue, Helvetica, sans-serif;
+    font-family: Cardo, Garamond, Serif;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -19,6 +21,7 @@
 
 html, body {
     height: 100%;
+    line-height: 1.5;
 }
 
 hr {
@@ -31,11 +34,13 @@ hr {
 }
 
 h1 {
-    font-family: Roboto, Helvetica Neue, Helvetica, sans-serif;
+    font-family: "Source Sans Pro", Helvetica Neue, Helvetica, sans-serif;
+    font-size: 3em;
 }
 
 p {
-    font-family: Roboto, Helvetica Neue, Helvetica, sans-serif;
+    font-family: Cardo, Garamond, Serif;
+    font-size: 1em;
 }
 
 dialog {
@@ -155,13 +160,13 @@ header {
 }
 
 #welcome, #photos {
-    margin: 10px 30px 10px 30px;
+    margin: 40px;
     width: calc(100% - 60px);
     float: left;
 }
 
 #welcome-text {
-    width: calc(50% - 5px);
+    width: calc(50% - 10px);
     float: left;
     padding-right: 10px;
     padding-bottom: 10px;
@@ -173,7 +178,7 @@ header {
 }
 
 #welcome-image {
-    width: calc(50% - 5px);
+    width: calc(50% - 10px);
     float: left;
 }
 
