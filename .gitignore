@@ -12,7 +12,6 @@ _mailinglist
 .cache/
 .idea/
 __pycache__/
-migrations/versions/
-migrations/__pycache__
+migrations/
 config.py
 env/
