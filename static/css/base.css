@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:600|Vollkorn');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Vollkorn');
 
 @font-face {
     font-family: Roboto;
@@ -34,12 +34,12 @@ hr {
 }
 
 h1 {
-    font-family: "Open Sans", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Source Sans Pro", Roboto, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 2em;
 }
 
 h2 {
-    font-family: "Open Sans", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Source Sans Pro", Roboto, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 1.2em;
 }
 
@@ -53,7 +53,7 @@ dialog {
     left: calc(50vw - 100px);
 }
 button {
-    font-family: "Open Sans", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Source Sans Pro", Roboto, "Helvetica Neue", Helvetica, sans-serif;
     outline: none;
     cursor: pointer;
 }
