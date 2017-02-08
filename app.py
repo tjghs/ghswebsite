@@ -6,7 +6,7 @@ from urllib.parse import urlparse, urljoin, urlencode
 
 CLIENT_ID = "omNihUKDY7L8XXLh41WTTY9Pda21T2SRqAmJO86C"
 CLIENT_SECRET = "fmdfCpUwDIu0E5FExHudOdySDSa7HPhNrRKTirNsXJIWc2NEMFJtiY7UaczcTJL2kzRnsBV4OWPQ8P8KTv8YDqS5rdOOAE0opdYBLbZtMzNTfnCWHTJTgmpmDDtSbjDY"
-REDIRECT_URI = "https://activities.tjhsst.edu/ghs/login"
+REDIRECT_URI = "https://dev.wzhang.me/login"
 
 AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
 TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
@@ -18,7 +18,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-import models
+from models import *
 import json
 
 # print(os.environ['APP_SETTINGS'])
@@ -48,7 +48,8 @@ def redirect_back(endpoint, **values):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    announcements = Announcement.query.all()
+    return render_template("index.html", announcements=announcements)
 
 
 @app.route("/hours")
@@ -57,6 +58,7 @@ def hours():
         profile_json = session.get('profile', {})
         return render_template("hours.html", profile=profile_json)
 
+
     return redirect(url_for('login', next='hours'))
 
 
@@ -64,7 +66,8 @@ def hours():
 def admin():
     if "oauth_token" in session:
         profile_json = session.get('profile', {})
-        return render_template("admin.html", profile=profile_json)
+        announcements = Announcement.query.all()
+        return render_template("admin.html", announcements=announcements, profile=profile_json)
 
     return redirect(url_for('login', next='admin'))
 

@@ -167,10 +167,25 @@ header {
     float: left;
 }
 
-#welcome, #photos {
+#welcome, #photos, #announcements {
     margin: 30px;
     width: calc(100% - 60px);
     float: left;
+}
+
+.announcement-title {
+}
+
+.announcement-title > h2 {
+    float: left;
+}
+
+.announcement-info {
+    height: 100%;
+    font-family: "Source Sans Pro", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: #757575;
+    padding: 0 5px;
 }
 
 #welcome-text {
@@ -180,7 +195,7 @@ header {
     padding-bottom: 10px;
 }
 
-#welcome-text > h1, #photos-text > h1 {
+#welcome-text > h1, #photos-text > h1, #annoucements > h1 {
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -243,6 +258,7 @@ header {
 .menu-button:active {
     background-color: #a40810; 
 }
+
 #nav-button {
     width: 68px;
     height: 68px;
@@ -250,6 +266,7 @@ header {
     outline: none;
     background-color: transparent;
 }
+
 .ic-menu {
     background-image: url("../icons/ic_menu_black_48px.svg");
     background-repeat: no-repeat;

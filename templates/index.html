@@ -42,11 +42,24 @@
                             </div>
                         </div>
                     </div>
-                <!--<hr>
+                <hr>
                 </section>
                 <section class="content-section">
-                    <div id="announcements"></div>
-                </section>-->
+                    <div id="announcements">
+                    <h1>Announcements</h1>
+                    {% for announcement in announcements %}
+                        <div class="announcement card">
+                            <div class="announcement-title">
+                                <h2>{{ announcement.title }}</h2>
+                                <span class="announcement-info">{{ announcement.date }}</span>
+                            </div>
+                            <div class="announcement-text">
+                                {{ announcement.desc }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </section>
             </div>
         </div>
         <nav id="sidebar">

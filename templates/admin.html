@@ -19,7 +19,14 @@
             <div id="content">
                 <div class="card">
                     <h2>Edit Announcements</h2>
-                    
+                    {% for announcement in announcements %}
+                        <div class="announcement">
+                            <h3>{{ announcement.title }}</h3>
+                            <div class="announcement text">
+                                {{ announcement.desc }}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="card">
                     <h2>Approve Hours</h2>
