@@ -14,25 +14,25 @@ TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
 from requests_oauthlib import OAuth2Session
 from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object(os.environ["APP_SETTINGS"])
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 from models import *
 import json
 
-# print(os.environ['APP_SETTINGS'])
+# print(os.environ["APP_SETTINGS"])
 
 
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
     test_url = urlparse(urljoin(request.host_url, target))
-    return test_url.scheme in ('http', 'https') and \
+    return test_url.scheme in ("http", "https") and \
         ref_url.netloc == test_url.netloc
 
 
 def get_redirect_target():
-    for target in request.values.get('next'), request.referrer:
+    for target in request.values.get("next"), request.referrer:
         if not target:
             continue
         if is_safe_url(target):
@@ -40,7 +40,7 @@ def get_redirect_target():
 
 
 def redirect_back(endpoint, **values):
-    target = request.form['next']
+    target = request.form["next"]
     if not target or not is_safe_url(target):
         target = url_for(endpoint, **values)
     return redirect(target)
@@ -55,32 +55,38 @@ def index():
 @app.route("/hours")
 def hours():
     if "oauth_token" in session:
-        profile_json = session.get('profile', {})
-        return render_template("hours.html", profile=profile_json)
+        profile_json = session.get("profile")
+        
+        hours = Hour.query.filter_by(name=profile_json['full_name'])
+        return render_template("hours.html", hours=hours)
 
-
-    return redirect(url_for('login', next='hours'))
+    return redirect(url_for("login", next="hours"))
 
 
 @app.route("/admin")
 def admin():
     if "oauth_token" in session:
-        profile_json = session.get('profile', {})
-        announcements = Announcement.query.all()
-        return render_template("admin.html", announcements=announcements, profile=profile_json)
+        #profile_json = session.get("profile", {})
+        username = session.get("username", {})
+        admins = ["2018wzhang", "2018nzhou"]
+        if username in admins:
+            announcements = Announcement.query.all()
+            hours = Hour.query.all()
+            return render_template("admin.html", announcements=announcements, hours=hours)
+        return "Unauthorized"
 
-    return redirect(url_for('login', next='admin'))
+    return redirect(url_for("login", next="admin"))
 
 
 @app.route("/login", methods=["GET"])
 def login():
-    nexturl = request.args.get('next')
+    nexturl = request.args.get("next")
     if not is_safe_url(nexturl):
         return flask.abort(400)
 
     oauth = OAuth2Session(
         CLIENT_ID, redirect_uri=REDIRECT_URI, scope=["read"])
-    if 'code' not in request.args:
+    if "code" not in request.args:
         authorization_url, state = oauth.authorization_url(AUTH_BASE_URL)
         session["next"] = nexturl
         return redirect(authorization_url)
@@ -95,32 +101,32 @@ def login():
         session["oauth_token"] = token
         return redirect(url_for(session["next"]))
     except InvalidGrantError:
-        return redirect(url_for('login'))
+        return redirect(url_for("login"))
 
 
 @app.route("/css/<path:path>")
 def send_css(path):
-    return send_from_directory('static/css', path)
+    return send_from_directory("static/css", path)
 
 
 @app.route("/scripts/<path:path>")
 def send_js(path):
-    return send_from_directory('static/scripts', path)
+    return send_from_directory("static/scripts", path)
 
 
 @app.route("/icons/<path:path>")
 def send_icons(path):
-    return send_from_directory('static/icons', path)
+    return send_from_directory("static/icons", path)
 
 
 @app.route("/images/<path:path>")
 def send_images(path):
-    return send_from_directory('static/images', path)
+    return send_from_directory("static/images", path)
 
 
 @app.route("/fonts/<path:path>")
 def send_fonts(path):
-    return send_from_directory('static/fonts', path)
+    return send_from_directory("static/fonts", path)
 
 
 @app.route("/logout")

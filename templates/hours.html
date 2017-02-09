@@ -18,11 +18,26 @@
         <div id="wrapper">
             <div id="content">
                 <div class="card" id="status">
+                    <h1>Hours</h1>
                     <table>
-                    {% for info in profile %}
                         <tr>
-                            <td>{{ info }}</td>
-                            <td>{{ info }}</td>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Hours</th>
+                            <th>Description</th>
+                            <th>Item</th>
+                            <th>Approved</th>
+                        </tr>
+                    {% for hour in hours %}
+                        <tr>
+                            <td>{{ hour.id }}</td>
+                            <td>{{ hour.date }}</td>
+                            <td>{{ hour.name }}</td>
+                            <td>{{ hour.hours }}</td>
+                            <td>{{ hour.desc }}</td>
+                            <td>{{ hour.item }}</td>
+                            <td>{{ hour.approved }}</td>
                         </tr>
                     {% endfor %}
                     </table>

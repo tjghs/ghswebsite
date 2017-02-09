@@ -33,13 +33,25 @@
                     <table>
                         <tr>
                             <th>ID</th>
+                            <th>Date</th>
                             <th>Name</th>
                             <th>Hours</th>
                             <th>Description</th>
-                            <th>Food</th>
-                            <th>Approve</th>
+                            <th>Item</th>
+                            <th>Approved</th>
                         </tr>
+                    {% for hour in hours %}
                         <tr>
+                            <td>{{ hour.id }}</td>
+                            <td>{{ hour.date }}</td>
+                            <td>{{ hour.name }}</td>
+                            <td>{{ hour.hours }}</td>
+                            <td>{{ hour.desc }}</td>
+                            <td>{{ hour.item }}</td>
+                            <td>{{ hour.approved }}</td>
+                        </tr>
+                    {% endfor %}
+                        <!--<tr>
                             <td>1</td>
                             <td>Naitian Zhou</td>
                             <td>2.00</td>
@@ -54,7 +66,7 @@
                             <td>Grillfest</td>
                             <td>No</td>
                             <td></td>
-                        </tr>
+                        </tr>--!>
                     </table>
                 </div>
             </div>

@@ -7,18 +7,20 @@ class Hour(db.Model):
     __tablename__ = "hours"
 
     id = db.Column(db.Integer, primary_key=True)
-    admin = db.Column(db.Boolean)
-    desc = db.Column(db.String(140))
-    hours = db.Column(db.Integer)
     date = db.Column(db.Date)
+    name = db.Column(db.String(30))
+    hours = db.Column(db.Integer)
+    desc = db.Column(db.String(140))
     item = db.Column(db.Boolean) #if item that can be counted as hour
+    approved = db.Column(db.Boolean)
 
-    def __init__(self, admin, desc, hours, date, item):
-        self.admin = admin
-        self.desc = desc
-        self.hours = hours
+    def __init__(self, date, name, hours, desc, item, approved):
         self.date = date
+        self.name = name
+        self.hours = hours
+        self.desc = desc
         self.item = item
+        self.approved = approved
 
     def __repr__(self):
         return "<id{}>".format(self.id)
@@ -28,16 +30,16 @@ class Announcement(db.Model):
     __tablename__ = "announcements"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(20))
-    tag = db.Column(db.String(10))
-    desc = db.Column(db.String(140))
     date = db.Column(db.Date)
+    tag = db.Column(db.String(10))
+    title = db.Column(db.String(20))
+    desc = db.Column(db.String(140))
 
-    def __init__(self, title, tag, desc, date):
-        self.title = title
-        self.tag = tag
-        self.desc = desc
+    def __init__(self, date, tag, title, desc):
         self.date = date
+        self.tag = tag
+        self.title = title
+        self.desc = desc
 
     def __repr__(self):
         return "<id{}>".format(self.id)
