@@ -24,6 +24,10 @@ html, body {
     line-height: 1.5;
 }
 
+span {
+    display: block;
+}
+
 hr {
     width: 100%;
     height: 1px;
@@ -58,38 +62,43 @@ button {
     cursor: pointer;
 }
 
-#left-arrow, #right-arrow {
+button.left, button.right {
     position: absolute;
     z-index: 2;
     width: 48px;
-    height: 48px;
+    height: 100%;
     float: left;
-    border-radius: 50%;
+    background-color: transparent;
     background-size: 100%;
-    background-color: #eee; 
     background-repeat: no-repeat;
-    top: calc(50% - 24px);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
+    top: 0;
 }
 
-#left-arrow:hover, #right-arrow:hover {
-    background-color: #da0a16;
-}
-
-#left-arrow:active, #right-arrow:active {
-}
-
-#left-arrow {
-    -webkit-mask-image: url('../icons/ic_keyboard_arrow_left_black_48px.svg');
-    mask-image: url('../icons/ic_keyboard_arrow_left_black_48px.svg');
+button.left {
     left: 0;
 }
 
-#right-arrow {
-    -webkit-mask-image: url('../icons/ic_keyboard_arrow_right_black_48px.svg');
-    mask-image: url('../icons/ic_keyboard_arrow_right_black_48px.svg');
+button.right {
     right: 0;
+}
+
+button.left:hover, button.right:hover {
+    background-color: #424242;
+}
+
+button.left:active, button.right:active {
+}
+
+span.left-arrow {
+    width: 48px;
+    height: 48px;
+    background-image: url('../icons/ic_keyboard_arrow_left_white_48px.svg');
+}
+
+span.right-arrow {
+    width: 48px;
+    height: 48px;
+    background-image: url('../icons/ic_keyboard_arrow_right_white_48px.svg');
 }
 
 section {
@@ -225,7 +234,7 @@ header {
     width: 100%;
     height: 400px;
     position: relative;
-    background-color: #464646;
+    background-color: #616161;
     overflow: hidden;
     float: left;
 }
