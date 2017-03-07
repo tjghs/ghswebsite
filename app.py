@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-import sys, os
+import sys
+import os
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from urllib.parse import urlparse, urljoin, urlencode
@@ -56,7 +57,7 @@ def index():
 def hours():
     if "oauth_token" in session:
         profile_json = session.get("profile")
-        
+
         hours = Hour.query.filter_by(name=profile_json['full_name'])
         return render_template("hours.html", hours=hours)
 
@@ -72,7 +73,10 @@ def admin():
         if username in admins:
             announcements = Announcement.query.all()
             hours = Hour.query.all()
-            return render_template("admin.html", announcements=announcements, hours=hours)
+            return render_template(
+                "admin.html",
+                announcements=announcements,
+                hours=hours)
         return "Unauthorized"
 
     return redirect(url_for("login", next="admin"))
