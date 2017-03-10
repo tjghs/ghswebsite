@@ -53,7 +53,7 @@ def index():
     return render_template("index.html", announcements=announcements)
 
 
-@app.route("/hours")
+@app.route("/hours/")
 def hours():
     if "oauth_token" in session:
         profile_json = session.get("profile")
@@ -64,7 +64,7 @@ def hours():
     return redirect(url_for("login", next="hours"))
 
 
-@app.route("/admin")
+@app.route("/admin/")
 def admin():
     if "oauth_token" in session:
         #profile_json = session.get("profile", {})
@@ -82,7 +82,7 @@ def admin():
     return redirect(url_for("login", next="admin"))
 
 
-@app.route("/login", methods=["GET"])
+@app.route("/login/", methods=["GET"])
 def login():
     nexturl = request.args.get("next")
     if not is_safe_url(nexturl):
@@ -133,7 +133,7 @@ def send_fonts(path):
     return send_from_directory("static/fonts", path)
 
 
-@app.route("/logout")
+@app.route("/logout/")
 def logout():
     session.clear()
     return redirect(url_for("index"))

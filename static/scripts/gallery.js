@@ -15,7 +15,7 @@ function jsonFlickrApi(data) {
     var photos = data.photos.photo;
     for (var i = 0; i < photos.length; i++) {
         linkArr.push([photos[i].url_c, photos[i].url_o]);
-        console.log(photos[i].url_c);
+        //console.log(photos[i].url_c);
     }
     ss.lastElementChild.src = linkArr[index][0];
 }
