@@ -1,5 +1,6 @@
 #!ghswebsite/bin/python3
-import sys, datetime
+import sys
+import datetime
 from app import db
 from models import Announcement
 
@@ -15,11 +16,11 @@ def delete(title):
     Announcement.query.filter_by(title=title).delete(synchronize_session=False)
     db.session.commit()
 
-if len(sys.argv) > 1:
+if len(sys.argv) > 4:
     if sys.argv[1] == "add":
         add(sys.argv[2], sys.argv[3], sys.argv[4])
     elif sys.argv[1] == "del":
-        delete(sys.argv[2], sys.argv[3], sys.argv[4])
+        delete(sys.argv[2])
     else:
         print(
             "usage: add or delete announcement database entries <tag> <title> <description>")
