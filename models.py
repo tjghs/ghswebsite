@@ -3,24 +3,44 @@ from app import db
 from sqlalchemy.dialects.postgresql import JSON
 
 
+class User(db.Model):
+    __tablename__ = "users"
+
+    id = db.Column(db.Integer, primary_key=True)
+    first = db.Column(db.String(20))
+    last = db.Column(db.String(20))
+    username = db.Column(db.String(12))
+    hours = db.Column(db.Integer)
+
+    def __init__(self, first, last, username, hours):
+        self.first = first
+        self.last = last
+        self.username = username
+        self.hours = hours
+
+    def __repr__(self):
+        return "<id{}>".format(self.id)
+
+
+
 class Hour(db.Model):
     __tablename__ = "hours"
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date)
-    name = db.Column(db.String(30))
+    user = db.Column(db.String(12))
     hours = db.Column(db.Integer)
     desc = db.Column(db.String(140))
     item = db.Column(db.Boolean) #if item that can be counted as hour
-    approved = db.Column(db.Boolean)
+    #approved = db.Column(db.Boolean)
 
-    def __init__(self, date, name, hours, desc, item, approved):
+    def __init__(self, date, user, hours, desc, item):
         self.date = date
-        self.name = name
+        self.user = user
         self.hours = hours
         self.desc = desc
         self.item = item
-        self.approved = approved
+        #self.approved = approved
 
     def __repr__(self):
         return "<id{}>".format(self.id)
@@ -32,7 +52,7 @@ class Announcement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date)
     tag = db.Column(db.String(10))
-    title = db.Column(db.String(20))
+    title = db.Column(db.String(50))
     desc = db.Column(db.String(140))
 
     def __init__(self, date, tag, title, desc):

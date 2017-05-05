@@ -3,6 +3,11 @@ import sys
 import os
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+
+from flask_wtf import Form
+from wtforms import StringField
+from wtforms.validators import DataRequired
+
 from urllib.parse import urlparse, urljoin, urlencode
 
 CLIENT_ID = "omNihUKDY7L8XXLh41WTTY9Pda21T2SRqAmJO86C"
@@ -58,7 +63,7 @@ def hours():
     if "oauth_token" in session:
         profile_json = session.get("profile")
 
-        hours = Hour.query.filter_by(name=profile_json['full_name'])
+        hours = Hour.query.filter_by(user=profile_json['ion_username'])
         return render_template("hours.html", hours=hours)
 
     return redirect(url_for("login", next="hours"))
@@ -102,6 +107,18 @@ def login():
         profile_data = json.loads(profile.content.decode())
         session["profile"] = profile_data
         session["username"] = profile_data["ion_username"]
+
+        users = User.query.filter_by(username=session["username"])
+        if users.count() == 0:
+            newUser = User(
+                profile_data["first_name"],
+                profile_data["last_name"],
+                profile_data["ion_username"],
+                0)
+            db.session.add(newUser)
+            db.session.commit()
+            print("New user " + session["username"] + " created.")
+        
         session["oauth_token"] = token
         return redirect(url_for(session["next"]))
     except InvalidGrantError:
