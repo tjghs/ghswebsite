@@ -4,10 +4,6 @@ import os
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 
-from flask_wtf import Form
-from wtforms import StringField
-from wtforms.validators import DataRequired
-
 from urllib.parse import urlparse, urljoin, urlencode
 
 
@@ -25,6 +21,7 @@ REDIRECT_URI = app.config["REDIRECT_URI"]
 db = SQLAlchemy(app)
 
 from models import *
+from forms import *
 import json
 
 # print(os.environ["APP_SETTINGS"])
@@ -69,22 +66,27 @@ def hours():
     return redirect(url_for("login", next="hours"))
 
 
-@app.route("/admin/")
+@app.route("/admin/", methods=["GET", "POST"])
 def admin():
-    if "oauth_token" in session:
-        #profile_json = session.get("profile", {})
-        username = session.get("username", {})
-        admins = ["2018wzhang", "2018nzhou"]
-        if username in admins:
-            announcements = Announcement.query.all()
-            hours = Hour.query.all()
-            return render_template(
-                "admin.html",
-                announcements=announcements,
-                hours=hours)
-        return "Unauthorized"
+    if request.method == "GET":
+        if "oauth_token" in session:
+            #profile_json = session.get("profile", {})
+            username = session.get("username", {})
+            admins = ["2018wzhang", "2018nzhou"]
+            if username in admins:
+                announcements = Announcement.query.all()
+                hours = Hour.query.all()
+                return render_template(
+                    "admin.html",
+                    announcements=announcements,
+                    hours=hours)
+            return "Unauthorized"
 
-    return redirect(url_for("login", next="admin"))
+        return redirect(url_for("login", next="admin"))
+    elif request.method == "POST":
+        return redirect(url_for("admin"))
+    else:
+        return redirect(url_for("admin"))
 
 
 @app.route("/login/", methods=["GET"])
@@ -118,7 +120,7 @@ def login():
             db.session.add(newUser)
             db.session.commit()
             print("New user " + session["username"] + " created.")
-        
+
         session["oauth_token"] = token
         return redirect(url_for(session["next"]))
     except InvalidGrantError:
