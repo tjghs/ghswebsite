@@ -10,9 +10,6 @@ from wtforms.validators import DataRequired
 
 from urllib.parse import urlparse, urljoin, urlencode
 
-CLIENT_ID = "omNihUKDY7L8XXLh41WTTY9Pda21T2SRqAmJO86C"
-CLIENT_SECRET = "fmdfCpUwDIu0E5FExHudOdySDSa7HPhNrRKTirNsXJIWc2NEMFJtiY7UaczcTJL2kzRnsBV4OWPQ8P8KTv8YDqS5rdOOAE0opdYBLbZtMzNTfnCWHTJTgmpmDDtSbjDY"
-REDIRECT_URI = "https://dev.wzhang.me/login"
 
 AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
 TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
@@ -22,6 +19,9 @@ from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
 app = Flask(__name__)
 app.config.from_object(os.environ["APP_SETTINGS"])
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+CLIENT_ID = app.config["CLIENT_ID"]
+CLIENT_SECRET = app.config["CLIENT_SECRET"]
+REDIRECT_URI = app.config["REDIRECT_URI"]
 db = SQLAlchemy(app)
 
 from models import *

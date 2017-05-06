@@ -12,6 +12,9 @@ class Config(object):
 
 
 class ProductionConfig(Config):
+    CLIENT_ID = ""
+    CLIENT_SECRET = ""
+    REDIRECT_URI = "https://activities.tjhsst.edu/ghs/login"
     DEBUG = False
     app.config['APPLICATION_ROOT'] = 'activities.tjhsst.edu/ghs'
 
@@ -22,6 +25,9 @@ class StagingConfig(Config):
 
 
 class DevelopmentConfig(Config):
+    CLIENT_ID = ""
+    CLIENT_SECRET = ""
+    REDIRECT_URI = ""
     DEVELOPMENT = True
     DEBUG = True
 
