@@ -157,6 +157,7 @@ def logout():
     session.clear()
     return redirect(url_for("index"))
 
+
 if __name__ == "__main__":
     if(len(sys.argv) < 2):
         print("Please specify a port")

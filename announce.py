@@ -16,6 +16,7 @@ def delete(title):
     Announcement.query.filter_by(title=title).delete(synchronize_session=False)
     db.session.commit()
 
+
 if len(sys.argv) >= 3:
     if sys.argv[1] == "add":
         add(sys.argv[2], sys.argv[3], sys.argv[4])
