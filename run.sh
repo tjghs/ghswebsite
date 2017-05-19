@@ -1,3 +1,3 @@
 #!/bin/sh
-source .productionenv
-env/bin/flask run -p $PORT
+source /web/activities/ghs/public/.prodenv
+/web/activities/ghs/public/env/bin/flask run -p $PORT

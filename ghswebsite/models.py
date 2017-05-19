@@ -52,8 +52,8 @@ class Announcement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date)
     tag = db.Column(db.String(10))
-    title = db.Column(db.String(50))
-    desc = db.Column(db.String(140))
+    title = db.Column(db.String(100))
+    desc = db.Column(db.String(500))
 
     def __init__(self, date, tag, title, desc):
         self.date = date
