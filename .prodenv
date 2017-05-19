@@ -1,3 +1,0 @@
-source /web/activities/ghs/public/env/bin/activate
-export FLASK_APP=/web/activities/public/ghswebsite/app.py
-export APP_SETTINGS="config.ProductionConfig"
