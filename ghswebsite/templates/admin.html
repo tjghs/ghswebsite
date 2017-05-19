@@ -22,26 +22,24 @@
                     </form>
                 </div>
                 <div class="card">
-                    <h2>Approve Hours</h2>
+                    <h2>All Hours</h2>
                     <table>
                         <tr>
                             <th>ID</th>
                             <th>Date</th>
-                            <th>Name</th>
+                            <th>User</th>
                             <th>Hours</th>
                             <th>Description</th>
                             <th>Item</th>
-                            <th>Approved</th>
                         </tr>
                         {% for hour in hours %}
                         <tr>
                             <td>{{ hour.id }}</td>
                             <td>{{ hour.date }}</td>
-                            <td>{{ hour.name }}</td>
+                            <td>{{ hour.user }}</td>
                             <td>{{ hour.hours }}</td>
                             <td>{{ hour.desc }}</td>
                             <td>{{ hour.item }}</td>
-                            <td>{{ hour.approved }}</td>
                         </tr>
                         {% endfor %}
                         <!--<tr>

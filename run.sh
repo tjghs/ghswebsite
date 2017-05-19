@@ -1,2 +1,3 @@
 #!/bin/sh
-env/bin/python app.py $PORT
+source .productionenv
+env/bin/flask run -p $PORT
