@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from app import db
+from ghswebsite.app import db
 from sqlalchemy.dialects.postgresql import JSON
 
 
