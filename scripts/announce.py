@@ -1,8 +1,8 @@
 #!ghswebsite/bin/python3
 import sys
 import datetime
-from app import db
-from models import Announcement
+from ghswebsite.app import db
+from ghswebsite.models import Announcement
 
 
 def add(tag, title, desc):

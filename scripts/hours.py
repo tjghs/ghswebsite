@@ -1,14 +1,23 @@
 #!ghswebsite/bin/python3
 import sys
 import datetime
-from app import db
-from models import Hour
+from ghswebsite.app import db
+from ghswebsite.models import User, Hour
 
 
 def add(user, hours, desc, item):
     isItem = True
     if item == "False":
         isItem = False
+    users = User.query.filter_by(username=user)
+    if users.count() == 0:
+        newUser = User(
+            "",
+            "",
+            user,
+            0)
+        db.session.add(newUser)
+        print("New user " + user + " created.")
     newHour = Hour(datetime.datetime.now(), user, float(hours), desc, isItem)
     db.session.add(newHour)
     db.session.commit()
