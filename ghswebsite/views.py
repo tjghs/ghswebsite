@@ -108,7 +108,6 @@ def login():
         profile_data = json.loads(profile.content.decode())
         session["profile"] = profile_data
         session["username"] = profile_data["ion_username"]
-
         users = User.query.filter_by(username=session["username"])
         if users.count() == 0:
             newUser = User(
