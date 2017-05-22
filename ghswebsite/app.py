@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import sys
 import os
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory

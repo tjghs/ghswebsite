@@ -4,6 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 from ghswebsite.app import app
 
+
 class Config(object):
     DEBUG = False
     TESTING = False
@@ -13,9 +14,11 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    CLIENT_ID = "" #OAuth client ID here
-    CLIENT_SECRET = "" #OAuth client secret here
+    CLIENT_ID = ""  # OAuth client ID here
+    CLIENT_SECRET = ""  # OAuth client secret here
     REDIRECT_URI = "https://activities.tjhsst.edu/ghs/login"
+    AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
+    TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
     DEBUG = False
     app.config['APPLICATION_ROOT'] = 'activities.tjhsst.edu/ghs'
 
@@ -26,9 +29,11 @@ class StagingConfig(Config):
 
 
 class DevelopmentConfig(Config):
-    CLIENT_ID = "" #OAuth client ID here
-    CLIENT_SECRET = "" #OAuth client secret here
-    REDIRECT_URI = "" #OAuth redirect URI here
+    CLIENT_ID = ""  # OAuth client ID here
+    CLIENT_SECRET = ""  # OAuth client secret here
+    REDIRECT_URI = ""  # OAuth redirect URI here
+    AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
+    TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
     DEVELOPMENT = True
     DEBUG = True
 

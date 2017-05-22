@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 from ghswebsite.app import db
 from sqlalchemy.dialects.postgresql import JSON
 
@@ -22,7 +21,6 @@ class User(db.Model):
         return "<id{}>".format(self.id)
 
 
-
 class Hour(db.Model):
     __tablename__ = "hours"
 
@@ -31,7 +29,7 @@ class Hour(db.Model):
     user = db.Column(db.String(12))
     hours = db.Column(db.Integer)
     desc = db.Column(db.String(140))
-    item = db.Column(db.Boolean) #if item that can be counted as hour
+    item = db.Column(db.Boolean)  # if item that can be counted as hour
     #approved = db.Column(db.Boolean)
 
     def __init__(self, date, user, hours, desc, item):

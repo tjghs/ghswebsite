@@ -1,15 +1,9 @@
-#!/usr/bin/python3
 import sys
 import os
+import json
 from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-
 from urllib.parse import urlparse, urljoin, urlencode
-
-
-AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
-TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
-
 from requests_oauthlib import OAuth2Session
 from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
 
@@ -20,32 +14,8 @@ from ghswebsite.forms import *
 CLIENT_ID = app.config["CLIENT_ID"]
 CLIENT_SECRET = app.config["CLIENT_SECRET"]
 REDIRECT_URI = app.config["REDIRECT_URI"]
-
-import json
-
-# print(os.environ["APP_SETTINGS"])
-
-
-def is_safe_url(target):
-    ref_url = urlparse(request.host_url)
-    test_url = urlparse(urljoin(request.host_url, target))
-    return test_url.scheme in ("http", "https") and \
-        ref_url.netloc == test_url.netloc
-
-
-def get_redirect_target():
-    for target in request.values.get("next"), request.referrer:
-        if not target:
-            continue
-        if is_safe_url(target):
-            return target
-
-
-def redirect_back(endpoint, **values):
-    target = request.form["next"]
-    if not target or not is_safe_url(target):
-        target = url_for(endpoint, **values)
-    return redirect(target)
+AUTH_BASE_URL = app.config["AUTH_BASE_URL"]
+TOKEN_URL = app.config["TOKEN_URL"]
 
 
 @app.route("/")
@@ -125,6 +95,12 @@ def login():
         return redirect(url_for("login"))
 
 
+@app.route("/logout/")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
+
 @app.route("/css/<path:path>")
 def send_css(path):
     return send_from_directory("static/css", path)
@@ -148,10 +124,3 @@ def send_images(path):
 @app.route("/fonts/<path:path>")
 def send_fonts(path):
     return send_from_directory("static/fonts", path)
-
-
-@app.route("/logout/")
-def logout():
-    session.clear()
-    return redirect(url_for("index"))
-
