@@ -1,6 +1,6 @@
 import sys
 import os
-from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
+from flask import Flask, Blueprint, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -11,3 +11,5 @@ db = SQLAlchemy(app)
 from ghswebsite.models import *
 from ghswebsite.forms import *
 from ghswebsite.views import *
+
+#app.register_blueprint(bp, url_prefix="/ghs")

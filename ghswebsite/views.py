@@ -1,7 +1,7 @@
 import sys
 import os
 import json
-from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
+from flask import Flask, Blueprint, redirect, session, url_for, render_template, request, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from urllib.parse import urlparse, urljoin, urlencode
 from requests_oauthlib import OAuth2Session
@@ -16,6 +16,29 @@ CLIENT_SECRET = app.config["CLIENT_SECRET"]
 REDIRECT_URI = app.config["REDIRECT_URI"]
 AUTH_BASE_URL = app.config["AUTH_BASE_URL"]
 TOKEN_URL = app.config["TOKEN_URL"]
+
+#bp = Blueprint("ghswebsite", __name__, template_folder="ghswebsite/templates")
+
+def is_safe_url(target):
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url, target))
+    return test_url.scheme in ("http", "https") and \
+        ref_url.netloc == test_url.netloc
+
+
+def get_redirect_target():
+    for target in request.values.get("next"), request.referrer:
+        if not target:
+            continue
+        if is_safe_url(target):
+            return target
+
+
+def redirect_back(endpoint, **values):
+    target = request.form["next"]
+    if not target or not is_safe_url(target):
+        target = url_for(endpoint, **values)
+    return redirect(target)
 
 
 @app.route("/")
