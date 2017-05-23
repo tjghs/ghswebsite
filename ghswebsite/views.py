@@ -1,15 +1,16 @@
-import sys
-import os
+#!/usr/bin/python3
 import json
-from flask import Flask, Blueprint, redirect, session, url_for, render_template, request, send_from_directory
-from flask_sqlalchemy import SQLAlchemy
-from urllib.parse import urlparse, urljoin, urlencode
+from flask import Flask, redirect, session, url_for, render_template, request, send_from_directory
 from requests_oauthlib import OAuth2Session
 from oauthlib.oauth2.rfc6749.errors import InvalidGrantError
+from urllib.parse import urlparse, urljoin
 
 from ghswebsite.app import app, db
-from ghswebsite.models import *
-from ghswebsite.forms import *
+from ghswebsite.models import Hour, Announcement, User
+
+AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
+TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
+
 
 CLIENT_ID = app.config["CLIENT_ID"]
 CLIENT_SECRET = app.config["CLIENT_SECRET"]
@@ -17,7 +18,6 @@ REDIRECT_URI = app.config["REDIRECT_URI"]
 AUTH_BASE_URL = app.config["AUTH_BASE_URL"]
 TOKEN_URL = app.config["TOKEN_URL"]
 
-#bp = Blueprint("ghswebsite", __name__, template_folder="ghswebsite/templates")
 
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
@@ -62,7 +62,7 @@ def hours():
 def admin():
     if request.method == "GET":
         if "oauth_token" in session:
-            #profile_json = session.get("profile", {})
+            # profile_json = session.get("profile", {})
             username = session.get("username", {})
             admins = ["2018wzhang", "2018nzhou"]
             if username in admins:
@@ -85,7 +85,7 @@ def admin():
 def login():
     nexturl = request.args.get("next")
     if not is_safe_url(nexturl):
-        return flask.abort(400)
+        return Flask.abort(400)
 
     oauth = OAuth2Session(
         CLIENT_ID, redirect_uri=REDIRECT_URI, scope=["read"])
