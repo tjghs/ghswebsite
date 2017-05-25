@@ -1,9 +1,9 @@
-            <a href="{{ url_for('index') }}">
+            <a href="{{ prefix|safe }}{{ url_for('index') }}">
                 <button class="menu-button">Home</button>
             </a>
-            <a href="{{ url_for('hours') }}">
+            <a href="{{ prefix|safe }}{{ url_for('hours') }}">
                 <button class="menu-button">Hour Tracker</button>
             </a>
-            <a href="{{ url_for('admin') }}">
+            <a href="{{ prefix|safe }}{{ url_for('admin') }}">
                 <button class="menu-button">Admin Console</button>
             </a>

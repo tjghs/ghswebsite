@@ -19,8 +19,8 @@ class ProductionConfig(Config):
     REDIRECT_URI = "https://activities.tjhsst.edu/ghs/login"
     AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
     TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
+    ROOT_URL = "/ghs"
     DEBUG = False
-    app.config['APPLICATION_ROOT'] = 'activities.tjhsst.edu/ghs'
 
 
 class StagingConfig(Config):
@@ -34,6 +34,7 @@ class DevelopmentConfig(Config):
     REDIRECT_URI = ""  # OAuth redirect URI here
     AUTH_BASE_URL = "https://ion.tjhsst.edu/oauth/authorize/"
     TOKEN_URL = "https://ion.tjhsst.edu/oauth/token/"
+    ROOT_URL = "/"
     DEVELOPMENT = True
     DEBUG = True
 

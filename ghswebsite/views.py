@@ -17,7 +17,7 @@ CLIENT_SECRET = app.config["CLIENT_SECRET"]
 REDIRECT_URI = app.config["REDIRECT_URI"]
 AUTH_BASE_URL = app.config["AUTH_BASE_URL"]
 TOKEN_URL = app.config["TOKEN_URL"]
-
+ROOT_URL = app.config["ROOT_URL"]
 
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
@@ -44,7 +44,7 @@ def redirect_back(endpoint, **values):
 @app.route("/")
 def index():
     announcements = Announcement.query.all()
-    return render_template("index.html", announcements=announcements)
+    return render_template("index.html", prefix=ROOT_URL, announcements=announcements)
 
 
 @app.route("/hours/")
@@ -53,7 +53,7 @@ def hours():
         profile_json = session.get("profile")
 
         hours = Hour.query.filter_by(user=profile_json['ion_username'])
-        return render_template("hours.html", hours=hours)
+        return render_template("hours.html", prefix=ROOT_URL, hours=hours)
 
     return redirect(url_for("login", next="hours"))
 
@@ -69,7 +69,7 @@ def admin():
                 announcements = Announcement.query.all()
                 hours = Hour.query.all()
                 return render_template(
-                    "admin.html",
+                    "admin.html", prefix=ROOT_URL,
                     announcements=announcements,
                     hours=hours)
             return "Unauthorized"
