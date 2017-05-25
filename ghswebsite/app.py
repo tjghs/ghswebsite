@@ -13,4 +13,5 @@ from ghswebsite.models import *
 from ghswebsite.forms import *
 from ghswebsite.views import *
 
+
 #app.register_blueprint(bp, url_prefix="/ghs")

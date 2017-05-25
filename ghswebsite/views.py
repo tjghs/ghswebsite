@@ -19,6 +19,7 @@ AUTH_BASE_URL = app.config["AUTH_BASE_URL"]
 TOKEN_URL = app.config["TOKEN_URL"]
 ROOT_URL = app.config["ROOT_URL"]
 
+
 def is_safe_url(target):
     ref_url = urlparse(request.host_url)
     test_url = urlparse(urljoin(request.host_url, target))
@@ -44,7 +45,10 @@ def redirect_back(endpoint, **values):
 @app.route("/")
 def index():
     announcements = Announcement.query.all()
-    return render_template("index.html", prefix=ROOT_URL, announcements=announcements)
+    return render_template(
+        "index.html",
+        prefix=ROOT_URL,
+        announcements=announcements)
 
 
 @app.route("/hours/")
@@ -56,6 +60,11 @@ def hours():
         return render_template("hours.html", prefix=ROOT_URL, hours=hours)
 
     return redirect(url_for("login", next="hours"))
+
+
+@app.route("/slideshow/<path:path>")
+def slideshow(path):
+    return send_from_directory("slideshow", path)
 
 
 @app.route("/admin/", methods=["GET", "POST"])

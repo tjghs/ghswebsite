@@ -1,5 +1,7 @@
 # German Honor Society Website #
 
+* NOTE: Clone slideshow into ghswebsite/ghswebsite/ in order for slideshow to work.
+
 ## Setting up dev environment ##
 
 * `pip install autoenv`
