@@ -55,7 +55,6 @@ def index():
 def hours():
     if "oauth_token" in session:
         profile_json = session.get("profile")
-
         hours = Hour.query.filter_by(user=profile_json['ion_username'])
         return render_template("hours.html", prefix=ROOT_URL, hours=hours)
 
@@ -77,9 +76,14 @@ def admin():
             if username in admins:
                 announcements = Announcement.query.all()
                 hours = Hour.query.all()
+                users = []
+                for hour in hours:
+                    users.append(
+                        User.query.filter_by(
+                            id=hour.user)[0].username)
                 return render_template(
                     "admin.html", prefix=ROOT_URL,
-                    announcements=announcements,
+                    announcements=announcements, users=users,
                     hours=hours)
             return "Unauthorized"
 

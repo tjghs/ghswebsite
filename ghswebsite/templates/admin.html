@@ -32,14 +32,14 @@
                             <th>Description</th>
                             <th>Item</th>
                         </tr>
-                        {% for hour in hours %}
+                        {% for i in range(hours|length) %}
                         <tr>
-                            <td>{{ hour.id }}</td>
-                            <td>{{ hour.date }}</td>
-                            <td>{{ hour.user }}</td>
-                            <td>{{ hour.hours }}</td>
-                            <td>{{ hour.desc }}</td>
-                            <td>{{ hour.item }}</td>
+                            <td>{{ hours[i].id }}</td>
+                            <td>{{ hours[i].date }}</td>
+                            <td>{{ users[i] }}</td>
+                            <td>{{ hours[i].hours }}</td>
+                            <td>{{ hours[i].desc }}</td>
+                            <td>{{ hours[i].item }}</td>
                         </tr>
                         {% endfor %}
                         <!--<tr>

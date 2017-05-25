@@ -15,10 +15,11 @@ def add(user, hours, desc, item):
             "",
             "",
             user,
-            0)
+            [])
         db.session.add(newUser)
         print("New user " + user + " created.")
-    newHour = Hour(datetime.datetime.now(), user, float(hours), desc, isItem)
+    userid = users[0].id
+    newHour = Hour(datetime.datetime.now(), userid, float(hours), desc, isItem)
     db.session.add(newHour)
     db.session.commit()
     print("New hour entry for " + user + " created: " + desc)
