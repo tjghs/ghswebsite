@@ -55,7 +55,19 @@ def index():
 def hours():
     if "oauth_token" in session:
         profile_json = session.get("profile")
-        hours = Hour.query.filter_by(user=profile_json['ion_username'])
+        users = User.query.filter_by(username=profile_json['ion_username'])
+        hours = []
+        if users.count() == 0:
+            newUser = User(
+                profile_json['first_name'],
+                profile_json['last_name'],
+                profile_json['ion_username'],
+                [])
+            db.session.add(newUser)
+            db.session.commit()
+            print("New user " + profile_json['ion_username'] + " created.")
+        else:
+            hours = Hour.query.filter_by(user=users[0].id)
         return render_template("hours.html", prefix=ROOT_URL, hours=hours)
 
     return redirect(url_for("login", next="hours"))

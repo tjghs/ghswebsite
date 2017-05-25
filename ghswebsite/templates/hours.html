@@ -9,12 +9,11 @@
         <div id="wrapper">
             <div id="content">
                 <div class="card" id="status">
-                    <h1>Hours</h1>
+                    <h1>Your Hours</h1>
                     <table>
                         <tr>
                             <th>ID</th>
                             <th>Date</th>
-                            <th>User</th>
                             <th>Hours</th>
                             <th>Description</th>
                             <th>Item</th>
@@ -22,8 +21,7 @@
                         {% for hour in hours %}
                         <tr>
                             <td>{{ hour.id }}</td>
-                            <td>{{ hour.date }}</td>
-                            <td>{{ hour.user }}</td>
+                            <td>{{ hour.date.strftime('%m/%d/%Y') }}</td>
                             <td>{{ hour.hours }}</td>
                             <td>{{ hour.desc }}</td>
                             <td>{{ hour.item }}</td>
