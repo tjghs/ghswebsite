@@ -14,5 +14,6 @@ _mailinglist
 __pycache__/
 migrations/
 config.py
+settings.py
 env/
 ghswebsite/slideshow/
