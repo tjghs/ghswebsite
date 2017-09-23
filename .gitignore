@@ -17,3 +17,4 @@ config.py
 settings.py
 env/
 ghswebsite/slideshow/
+ghswebsite/ghswebsite/secret.py
