@@ -1,9 +1,27 @@
-            <a href="{{ prefix|safe }}{{ url_for('index') }}">
-                <button class="menu-button">Home</button>
-            </a>
-            <a href="{{ prefix|safe }}{{ url_for('hours') }}">
-                <button class="menu-button">Hour Tracker</button>
-            </a>
-            <a href="{{ prefix|safe }}{{ url_for('admin') }}">
-                <button class="menu-button">Admin Console</button>
-            </a>
+{# Navigation Sidebar #}
+<a href="{% url 'index' %}">
+    <button class="menu-button">Home</button>
+</a>
+{% if request.user.is_authenticated %}
+{% if request.user.is_superuser %}
+<a href="{% url 'create_announcement' %}">
+    <button class="menu-button">Add Announcement</button>
+</a>
+{% endif %}
+<a href="{% url 'logout' %}">
+    <button class="menu-button">Logout</button>
+</a>
+{% else %}
+<a href="{% url 'login' %}">
+    <button class="menu-button">Login</button>
+</a>
+{% endif %}
+{% comment %}
+<!-- <a href="{{ prefix|safe }}{{ url_for('hours') }}"> -->
+<!--     <button class="menu-button">Hour Tracker</button> -->
+<!-- </a> -->
+<!-- <a href="{{ prefix|safe }}{{ url_for('admin') }}"> -->
+<!--     <button class="menu-button">Admin Console</button> -->
+<!-- </a> -->
+{% endcomment %}
+
