@@ -1,8 +1,9 @@
+{% load static %}
         <meta charset="UTF-8">
         <meta name="theme-color" content="#da0a16" />
         <meta name="description" content="TJHSST German Honor Society">
         <meta name="author" content="William Zhang and Naitian Zhou">
         <meta name=viewport content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/ico" href="{{ prefix|safe }}/icons/favicon.ico">
-        <link rel="stylesheet" href="{{ prefix|safe }}/css/base.css">
-        <link rel="stylesheet" href="{{ prefix|safe }}/css/module.css">
+        <link rel="icon" type="image/ico" href="{% static '/icons/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static '/css/module.css' %}">
