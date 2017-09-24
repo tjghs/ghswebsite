@@ -1,29 +1,21 @@
 from django.db import models
 
-# Create your models here.
-class User(models.Model):
-    #__tablename__ = "users"
-
-    first = models.CharField(max_length=20)
-    last = models.CharField(max_length=20)
-    username = models.CharField(max_length=12)
+from user.models import User
 
 
-class Hour(db.Model):
-    #__tablename__ = "hours"
+class HourItem(models.Model):
+    title = models.CharField(max_length=32, unique=True)
+    hours = models.DecimalField(max_digits=4, decimal_places=3)
 
-    date = models.dateField()
+    def __str__(self):
+        return self.title
+
+
+class HourRequest(models.Model):
+    date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    hours = models.integerField()
-    desc = models.CharField(max_length=50)
-    item = models.BooleanField(default=False)  # if item that can be counted as hour
-    # approved = models.BooleanField(default=False)
-
-
-class Announcement(db.Model):
-    #__tablename__ = "announcements"
-
-    date = models.dateField()
-    tag = db.Column(db.String(10))
-    title = db.Column(db.String(100))
-    desc = models.CharField(max_length=500)
+    count = models.IntegerField()
+    description = models.CharField(max_length=50)
+    item = models.ForeignKey(HourItem)
+    approved = models.BooleanField(default=False)
+    rejected = models.BooleanField(default=False)

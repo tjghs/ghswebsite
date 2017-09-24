@@ -18,14 +18,18 @@ from django.contrib import admin
 from django.contrib.auth.views import logout
 
 from main.views import index
+from admin.views import admin_index
 from user.views import login
 import announcements.urls as announcements
+import hours.urls as hours
 
 urlpatterns = [
     url('', include('social_django.urls', namespace='social')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^djangoadmin/', admin.site.urls),
+    url(r'^admin/', admin_index, name='admin_index'),
     url(r'^login/', login, name='login'),
     url(r'^logout/', logout, {'next_page': '/'}, name='logout'),
     url(r'^announcements/', include(announcements)),
+    url(r'^hours/', include(hours)),
     url(r'^$', index, name='index')
 ]

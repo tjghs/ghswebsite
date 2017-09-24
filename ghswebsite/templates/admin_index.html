@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+<section>
+<h2>Announcements</h2>
+<p><a href="{% url 'create_announcement' %}">Create a new announcement.</a></p>
+</section>
+<h2>Hours</h2>
+<p><a href="{% url 'add_hour_item' %}">Add an hour item.</a></p>
+<p><a href="{% url 'approve_hours' %}">Approve Hours.</a></p>
+<p>Currently, there are {{ num_outstanding }} requests waiting to be approved. </p>
+{% endblock content %}

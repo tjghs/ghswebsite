@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<h1>Add New Announcement</h1>
     <form action="{% url 'create_announcement' %}" method="POST" accept-charset="utf-8">
     {% csrf_token %}
     <table>
