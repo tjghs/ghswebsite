@@ -84,9 +84,36 @@ def approve_hours(request):
         'total': str(r.count * r.item.hours),
         'date': str(r.date)
     } for r in HourRequest.objects.filter(approved=False, rejected=False)]
-    if 'all' in request.GET:
-        return JsonResponse(all_requests, safe=False)
     context = {
         'requests': all_requests
     }
     return render(request, 'hours/approve.html', context)
+
+
+@superuser_required
+def approve_api(request):
+    if request.method == 'POST':
+        try:
+            pk = request.POST['pk']
+            do_approve = request.POST['action'] == 'approve'
+            hr = HourRequest.objects.get(pk=pk)
+            if do_approve:
+                hr.approved = True
+            else:
+                hr.rejected = True
+            hr.save()
+            all_requests = [{
+                'title': r.item.title,
+                'user': r.user.full_name,
+                'id': r.pk,
+                'desc': r.description,
+                'item_hours': str(r.item.hours),
+                'count': r.count,
+                'total': str(r.count * r.item.hours),
+                'date': str(r.date)
+            } for r in HourRequest.objects.filter(approved=False, rejected=False)]
+            return JsonResponse(all_requests, safe=False)
+        except Exception as e:
+            return JsonResponse({'error': 'Error: {}'.format(e)})
+    else:
+        return JsonResponse({'error': 'Invalid HTTP method'})
