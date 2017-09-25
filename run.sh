@@ -1,4 +1,3 @@
 #!/bin/sh
-cd /web/activities/ghs/public
-env/bin/python ghswebsite/manage.py runserver $PORT
-#/web/activities/ghs/public/env/bin/python /web/activities/ghs/public/ghswebsite/app.py $PORT
+cd /web/activities/ghs/public/ghswebsite
+/web/activities/ghs/public/env/bin/gunicorn ghswebsite.wsgi -b 127.0.0.1:$PORT -w=15
