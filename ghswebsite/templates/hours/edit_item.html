@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit Hour Item</h1>
+<form action="{% url 'edit_hour_item' item.pk %}" method="POST" accept-charset="utf-8">
+    <table>
+        {% csrf_token %}
+        {{ form.as_table }}
+        <tr><th></th><td><input type="submit" class="button" value="Submit" /> <a href="{% url 'add_hour_item' %}">Cancel</a></td></tr>
+    </table>
+</form>
+{% endblock content %}

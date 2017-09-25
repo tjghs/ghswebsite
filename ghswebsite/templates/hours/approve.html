@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jsonify %}
+{% block script %}
+<!-- TODO: don't use CDN. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
+<script charset="utf-8">
+    let hours = {{ requests | jsonify }};
+    let approveEndpoint = "{% url 'approve_endpoint' %}";
+</script>
+<script src="{% static '/scripts/approve.js' %}" charset="utf-8"></script>
+{% endblock script %}
+{% block content %}
+<h1>Approve Hours</h1>
+{% csrf_token %}
+<div class="hour-container">
+</div>
+{% verbatim %}
+<script id="template" type="text/x-handlebars-template">
+<div class="announcement card">
+    <div class="announcement-title">
+        <h2>{{ user }} ({{ title }})</h2>
+        <span class="announcement-info">{{ date }}</span>
+    </div>
+    <div class="announcement-text">
+        <div>Hours: {{ item_hours }} (x{{ count }}) | Total: {{ total }}</div>
+        <div>Description: {{ desc }}</div>
+        <div class="action-buttons">
+            <a href="" class="button approve" data-pk="{{ id }}">Approve</a>
+            <a href="" class="reject" data-pk="{{ id }}">Reject</a>
+        </div>
+    </div>
+</div>
+</script>
+{% endverbatim %}
+{% endblock content %}

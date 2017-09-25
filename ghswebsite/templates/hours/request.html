@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your Hour Requests</h1>
+<p>Hey hey, {{ request.user.full_name }}. You have {{ approved_hours }} approved hours right now!</p>
+
+<h2>Hour Request Form</h2>
+<form action="{% url 'request_hours'%}" method="POST" accept-charset="utf-8">
+    <table>
+        {% csrf_token %}
+        {{ request_form.as_table }}
+        <tr><th></th><td><input type="submit" class="button" value="Submit" /></td></tr>
+    </table>
+</form>
+
+<h2>Outstanding Requests</h2>
+{% for hour_request in outstanding %}
+    <div class="announcement card">
+        <div class="announcement-title">
+            <h2>{{ hour_request.item.title }}</h2>
+            <span class="announcement-info">{{ hour_request.date }}</span>
+        </div>
+        <div class="announcement-text">
+                <div>Hours: {{ hour_request.item.hours }} (x{{ hour_request.count }})</div>
+                <div>Description: {{ hour_request.description }}</div>
+        </div>
+    </div>
+{% empty %}
+    <p>No outstanding requests at this time.</p>
+{% endfor %}
+<h2>Approved Requests</h2>
+{% for hour_request in approved %}
+    <div class="announcement card">
+        <div class="announcement-title">
+            <h2>{{ hour_request.item.title }}</h2>
+            <span class="announcement-info">{{ hour_request.date }}</span>
+        </div>
+        <div class="announcement-text">
+                <div>Hours: {{ hour_request.item.hours }} (x{{ hour_request.count }})</div>
+                <div>Description: {{ hour_request.description }}</div>
+        </div>
+    </div>
+{% empty %}
+    <p>No approved requests at this time.</p>
+{% endfor %}
+<h2>Rejected Requests</h2>
+{% for hour_request in rejected %}
+    <div class="announcement card">
+        <div class="announcement-title">
+            <h2>{{ hour_request.item.title }}</h2>
+            <span class="announcement-info">{{ hour_request.date }}</span>
+        </div>
+        <div class="announcement-text">
+                <div>Hours: {{ hour_request.item.hours }} (x{{ hour_request.count }})</div>
+                <div>Description: {{ hour_request.description }}</div>
+        </div>
+    </div>
+{% empty %}
+    <p>No rejected requests at this time.</p>
+{% endfor %}
+{% endblock content %}

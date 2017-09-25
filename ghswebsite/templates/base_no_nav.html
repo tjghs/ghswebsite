@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include 'head.html' %}
+        {% block script %}
+        {% endblock script %}
+    </head>
+    <title>German Honor Society</title>
+    <body>
+        {% include 'header_no_nav.html' %}
+        <div id="wrapper">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <footer>
+        </footer>
+    </body>
+</html>

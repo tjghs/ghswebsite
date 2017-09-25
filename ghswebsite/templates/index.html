@@ -1,66 +1,53 @@
-<!DOCTYPE html>
-<html>
-    <head>
-{% include 'head.html' %}
-    </head>
-    <title>German Honor Society</title>
-    <body>
-{% include 'header.html' %}
-        <div id="wrapper">
-            <div id="content">
-                <section class="content-section">
-                    <div id="welcome">
-                        <div id="welcome-text">
-                            <h1>Wilkommen!</h1>
-                            {% include 'description.html' %}
-                        </div>
-                        <div id="welcome-image">
-                            <img src="images/welcome.jpg" alt="welcome.jpg" />
-                        </div>
-                    </div>
-                    <hr>
-                </section>
-                <section class="content-section">
-                    <div id="photos">
-                        <div id="photos-text">
-                            <h1>Photos</h1>
-                            <div id="slideshow">
-                                <button class="left">
-                                    <span class="left-arrow"></span>
-                                </button>
-                                <button class="right">
-                                    <span class="right-arrow"></span>
-                                </button>
-                                <img />
-                            </div>
-                        </div>
-                    </div>
-                <hr>
-                </section>
-                <section class="content-section">
-                    <div id="announcements">
-                    <h1>Announcements</h1>
-                        {% for announcement in announcements %}
-                        <div class="announcement card">
-                            <div class="announcement-title">
-                                <h2>{{ announcement.title }}</h2>
-                                <span class="announcement-info">{{ announcement.date }}</span>
-                            </div>
-                            <div class="announcement-text">
-                                {{ announcement.desc }}
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </section>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="content-section">
+    <div id="welcome">
+        <div id="welcome-text">
+            <h1>Wilkommen!</h1>
+            {% include 'description.html' %}
+        </div>
+        <div id="welcome-image">
+            <img src="{% static 'images/welcome.jpg' %}" alt="welcome.jpg" />
+        </div>
+    </div>
+    <hr>
+</section>
+<section class="content-section">
+    <div id="photos">
+        <div id="photos-text">
+            <h1>Photos</h1>
+            <div id="slideshow">
+                <button class="left">
+                    <span class="left-arrow"></span>
+                </button>
+                <button class="right">
+                    <span class="right-arrow"></span>
+                </button>
+                <img />
             </div>
         </div>
-        <nav id="sidebar">
-{% include 'sidebar.html' %}
-        </nav>
-        <footer>
-        </footer>
-        <script src="{{ prefix|safe }}/scripts/gallery.js"></script>
-        <script src="{{ prefix|safe }}/scripts/sidebar.js"></script>
-    </body>
-</html>
+    </div>
+    <hr>
+</section>
+<section class="content-section">
+    <div id="announcements">
+        <h1>Announcements</h1>
+        {% for announcement in announcements %}
+        <div class="announcement card">
+            <div class="announcement-title">
+                <h2>{{ announcement.title }}</h2>
+                <span class="announcement-info">{{ announcement.date }}</span>
+            </div>
+            <div class="announcement-text">
+                {{ announcement.content }}
+            </div>
+        </div>
+        {% empty %}
+        <span class="announcements-empty"> There are no announcements at this time. </span>
+        {% endfor %}
+    </div>
+</section>
+
+<script src="{% static '/scripts/gallery.js' %}"></script>
+{% endblock %}

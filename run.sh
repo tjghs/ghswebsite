@@ -1,7 +1,4 @@
 #!/bin/sh
-export LC_ALL=C.UTF-8
-export LANG=C.UTF-8
-export FLASK_APP=ghswebsite
-export APP_SETTINGS="config.ProductionConfig"
-/web/activities/ghs/public/env/bin/python run.py $PORT
+cd /web/activities/ghs/public
+env/bin/python ghswebsite/manage.py runserver $PORT
 #/web/activities/ghs/public/env/bin/python /web/activities/ghs/public/ghswebsite/app.py $PORT

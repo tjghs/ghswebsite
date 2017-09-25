@@ -1,0 +1,6 @@
+{% extends 'base_no_nav.html' %}
+{% block content %}
+    <a href="{% url 'social:begin' 'ion' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}" class="button">
+        Log In with Ion
+    </a>
+{% endblock %}

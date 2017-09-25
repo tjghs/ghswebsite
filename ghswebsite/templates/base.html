@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include 'head.html' %}
+        {% block script %}
+        {% endblock script %}
+    </head>
+    <title>German Honor Society</title>
+    <body>
+        {% include 'header.html' %}
+        <div id="wrapper">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <nav id="sidebar">
+            {% include 'sidebar.html' %}
+        </nav>
+        <footer>
+        </footer>
+        <script src="{% static '/scripts/sidebar.js' %}"></script>
+    </body>
+</html>
