@@ -1,4 +1,4 @@
-from hours.models import HourRequest
+from ..hours.models import HourRequest
 
 
 def unapproved_requests(request):

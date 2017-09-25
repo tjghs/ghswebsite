@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import HourRequestForm, HourItemForm
 from .models import HourRequest, HourItem
-from user.decorators import superuser_required
+from ..user.decorators import superuser_required
 
 
 @login_required

@@ -18,3 +18,4 @@ settings.py
 env/
 ghswebsite/slideshow/
 ghswebsite/ghswebsite/secret.py
+ghswebsite/settings/secret.py

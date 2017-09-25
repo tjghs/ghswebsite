@@ -17,11 +17,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.views import logout
 
-from main.views import index
-from admin.views import admin_index
-from user.views import login
-import announcements.urls as announcements
-import hours.urls as hours
+from .apps.main.views import index
+from .apps.admin.views import admin_index
+from .apps.user.views import login
+from .apps.announcements import urls as announcements
+from .apps.hours import urls as hours
 
 urlpatterns = [
     url('', include('social_django.urls', namespace='social')),

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from .forms import AnnouncementForm
-from user.decorators import superuser_required
+from ..user.decorators import superuser_required
 
 
 @superuser_required
