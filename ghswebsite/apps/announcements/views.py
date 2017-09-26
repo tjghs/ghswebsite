@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -11,6 +12,6 @@ def create_announcement_view(request):
         form = AnnouncementForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(settings.ROOT_PATH)
     form = AnnouncementForm()
     return render(request, 'announcements/new.html', {'form': form})
