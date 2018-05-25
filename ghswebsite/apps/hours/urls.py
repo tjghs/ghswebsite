@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import request_hours, add_hour_item, edit_hour_item, approve_hours, approve_api
+from .views import request_hours, add_hour_item, edit_hour_item, delete_hour_item, approve_hours, approve_api
 
 urlpatterns = [
     url(r'^request/', request_hours, name='request_hours'),
