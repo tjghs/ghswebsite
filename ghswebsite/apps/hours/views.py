@@ -59,10 +59,7 @@ def edit_hour_item(request, item):
     item = get_object_or_404(HourItem, pk=item)
     if request.method == 'POST':
         item_form = HourItemForm(request.POST, instance=item)
-        try:
-            item_form.save()
-        except:
-            pass
+        item_form.save()
     item_form = HourItemForm(instance=item)
     context = {
         'form': item_form,
