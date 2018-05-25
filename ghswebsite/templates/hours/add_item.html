@@ -12,9 +12,9 @@
 
 <h2>Pre-existing Hour Items</h2>
 <table>
-    <tr><th>Item Name</th><th>Value</th><th></th></tr>
+    <tr><th>Item Name</th><th>Value</th><th></th><th></th></tr>
     {% for item in items %}
-    <tr><td>{{ item.title }}</td><td>{{ item.hours }}</td><td><a href="{% url 'edit_hour_item' item.pk %}">Edit</a></td></tr>
+    <tr><td>{{ item.title }}</td><td>{{ item.hours }}</td><td><a href="{% url 'edit_hour_item' item.pk %}">Edit</a></td><td><a href="{% url 'delete_hour_item' item.pk %}">Delete</a></td></tr>
     {% empty %}
         <p>No hour items.</p>
     {% endfor %}

@@ -59,13 +59,21 @@ def edit_hour_item(request, item):
     item = get_object_or_404(HourItem, pk=item)
     if request.method == 'POST':
         item_form = HourItemForm(request.POST, instance=item)
-        item_form.save()
+        if item_form.is_valid():
+            item_form.save()
+            return redirect("add_hour_item")
     item_form = HourItemForm(instance=item)
     context = {
         'form': item_form,
         'item': item
     }
     return render(request, 'hours/edit_item.html', context)
+
+@superuser_required
+def delete_hour_item(request, item):
+    item = get_object_or_404(HourItem, pk=item)
+    item.delete()
+    return redirect("add_hour_item")
 
 
 @superuser_required
